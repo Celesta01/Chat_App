@@ -1,3 +1,7 @@
+import 'package:chat_app/pages/CallsPage.dart';
+import 'package:chat_app/pages/Camera.dart';
+import 'package:chat_app/pages/ChatPage.dart';
+import 'package:chat_app/pages/StatusPage.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -9,12 +13,12 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
-  TabController _controller;
+  TabController? _controller;
 
   @override
   void initState() {
     super.initState();
-    _controller = TabController(length: 4, vsync: this, initialIndex: 0);
+    _controller = TabController(length: 4, vsync: this, initialIndex: 1);
   }
 
   @override
@@ -24,15 +28,59 @@ class _HomeScreenState extends State<HomeScreen>
         title: const Text('Chat App'),
         actions: [
           IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert))
-        ],
-        bottom: TabBar(controller: _controller, tabs: [
-          Tab(
-            icon: Icon(Icons.camera),
+          // IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert))
+          PopupMenuButton<String>(
+            onSelected: (value) {
+              print(value);
+            },
+            itemBuilder: (context) {
+              return [
+                const PopupMenuItem(
+                  child: Text('New Group'),
+                  value: 'New Group',
+                ),
+                const PopupMenuItem(
+                  child: Text('New Broadcast'),
+                  value: 'New Broadcast',
+                ),
+                const PopupMenuItem(
+                  child: Text('Whatsapp Web'),
+                  value: 'Whatsapp Web',
+                ),
+                const PopupMenuItem(
+                  child: Text('Starred Messages'),
+                  value: 'Starred Messages',
+                ),
+                const PopupMenuItem(
+                  child: Text('Settings'),
+                  value: 'Settings',
+                ),
+              ];
+            },
           )
-        ]),
+        ],
+        bottom: TabBar(
+            controller: _controller,
+            indicatorColor: Colors.white,
+            tabs: const [
+              Tab(
+                icon: Icon(Icons.camera_alt),
+              ),
+              Tab(
+                text: 'CHATS',
+              ),
+              Tab(
+                text: 'STATUS',
+              ),
+              Tab(
+                text: 'CALLS',
+              )
+            ]),
       ),
-      body: const Center(child: Text('Home Screen')),
+      body: TabBarView(
+        controller: _controller,
+        children: [Camera(), ChatPage(), StatusPage(), CallsPages()],
+      ),
     );
   }
 }
