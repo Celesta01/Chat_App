@@ -12,36 +12,43 @@ class ChatPage extends StatefulWidget {
 class _ChatPageState extends State<ChatPage> {
   List<ChatModel> chats = [
     ChatModel(
-      name: 'User Name',
-      icon: 'person.png',
+      name: 'Vip',
+      icon: 'person.svg',
       isGroup: false,
       time: '12:00',
       currentMessage: 'hiii how are you',
     ),
     ChatModel(
-      name: 'UserName',
-      icon: 'person.png',
+      name: 'CanteenBoyz',
+      icon: 'person.svg',
       isGroup: true,
       time: '15:00',
       currentMessage: ' how are you',
     ),
     ChatModel(
-      name: 'User2',
-      icon: 'person.png',
+      name: 'Karan',
+      icon: 'person.svg',
       isGroup: false,
       time: '13:00',
       currentMessage: 'i am fine',
     ),
     ChatModel(
-      name: 'Name',
-      icon: 'person.png',
+      name: 'Aman',
+      icon: 'person.svg',
       isGroup: true,
       time: '12:40',
       currentMessage: 'hello',
     ),
     ChatModel(
-      name: 'User Name',
-      icon: 'person.png',
+      name: 'Shaqib',
+      icon: 'person.svg',
+      isGroup: false,
+      time: '17:20',
+      currentMessage: 'hiii how are you',
+    ),
+    ChatModel(
+      name: 'JP',
+      icon: 'person.svg',
       isGroup: false,
       time: '17:20',
       currentMessage: 'hiii how are you',
@@ -50,17 +57,15 @@ class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          child: const Icon(Icons.chat),
-        ),
-        body: ListView(children: [
-          ListView.builder(
-            itemCount: chats.length,
-            itemBuilder: (context, index) => CustomCard(
-              chatModel: chats[index],
-            )
-          )
-        ]));
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(Icons.chat),
+      ),
+      body: ListView.builder(
+          itemCount: chats.length,
+          itemBuilder: (context, index) => CustomCard(
+                chatModel: chats[index],
+              )),
+    );
   }
 }
