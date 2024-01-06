@@ -79,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen>
       ),
       body: TabBarView(
         controller: _controller,
-        children: [Camera(), ChatPage(), StatusPage(), CallsPages()],
+        children: const [Camera(), ChatPage(), StatusPage(), CallsPages()],
       ),
     );
   }

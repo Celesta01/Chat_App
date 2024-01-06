@@ -1,5 +1,7 @@
+import 'package:chat_app/CustomUI/ButtonCard.dart';
 import 'package:chat_app/CustomUI/ContactCard.dart';
 import 'package:chat_app/Model/ChatModel.dart';
+import 'package:chat_app/Screens/CreateGroup.dart';
 import 'package:flutter/material.dart';
 
 class SelectContact extends StatefulWidget {
@@ -64,7 +66,7 @@ class _SelectContactState extends State<SelectContact> {
     ];
     return Scaffold(
         appBar: AppBar(
-            title: Column(
+            title: const Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -113,9 +115,21 @@ class _SelectContactState extends State<SelectContact> {
               )
             ]),
         body: ListView.builder(
-            itemCount: contacts.length,
+            itemCount: contacts.length + 2,
             itemBuilder: (context, index) {
-              return ContactCard(contact: contacts[index]);
+              if (index == 0) {
+                return InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>  CreateGroup()));
+                    },
+                    child: ButtonCard(icon: Icons.group, name: 'New Group'));
+              } else if (index == 1) {
+                return ButtonCard(icon: Icons.person_add, name: 'New Contact');
+              }
+              return ContactCard(contact: contacts[index - 2]);
             }));
   }
 }

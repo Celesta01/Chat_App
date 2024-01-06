@@ -170,16 +170,21 @@ class _IndividualPageState extends State<IndividualPage> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   IconButton(
-                                    icon: Icon(Icons.attach_file),
-                                    onPressed: () {},
+                                    icon: const Icon(Icons.attach_file),
+                                    onPressed: () {
+                                      showModalBottomSheet(
+                                          backgroundColor: Colors.transparent,
+                                          context: context,
+                                          builder: (builder) => bottomsheet());
+                                    },
                                   ),
                                   IconButton(
-                                    icon: Icon(Icons.camera_alt),
+                                    icon: const Icon(Icons.camera_alt),
                                     onPressed: () {},
                                   )
                                 ],
                               ),
-                              contentPadding: EdgeInsets.all(5),
+                              contentPadding: const EdgeInsets.all(5),
                             ),
                           ),
                         ),
@@ -221,13 +226,91 @@ class _IndividualPageState extends State<IndividualPage> {
     );
   }
 
+  Widget bottomsheet() {
+    return SizedBox(
+      height: 278,
+      width: MediaQuery.of(context).size.width,
+      child: Card(
+        margin: const EdgeInsets.all(18),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  iconcreation(
+                      Icons.insert_drive_file, Colors.indigo, "Document"),
+                  const SizedBox(
+                    width: 40,
+                  ),
+                  iconcreation(Icons.camera_alt, Colors.pink, "Camera"),
+                  const SizedBox(
+                    width: 40,
+                  ),
+                  iconcreation(Icons.insert_photo, Colors.purple, "Gallery"),
+                ],
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  iconcreation(Icons.headset, Colors.orange, "Audio"),
+                  const SizedBox(
+                    width: 40,
+                  ),
+                  iconcreation(Icons.location_pin, Colors.teal, "Location"),
+                  const SizedBox(
+                    width: 40,
+                  ),
+                  iconcreation(Icons.person, Colors.blue, "Contact"),
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget iconcreation(IconData icon, Color color, String text) {
+    return InkWell(
+      onTap: () {},
+      child: Column(
+        children: [
+          CircleAvatar(
+            radius: 30,
+            backgroundColor: color,
+            child: Icon(
+              icon,
+              size: 29,
+              color: Colors.white,
+            ),
+          ),
+          SizedBox(
+            height: 5,
+          ),
+          Text(
+            text,
+            style: TextStyle(fontSize: 12),
+          )
+        ],
+      ),
+    );
+  }
+
   Widget emojiSelect() {
-    return EmojiPicker(onEmojiSelected: (emoji, category) {
-      print(emoji);
-      setState(() {
-        var emoji;
-        _controller.text = _controller.text + emoji.emoji;
-      });
-    });
+    return SizedBox(
+      height: 250,
+      child: EmojiPicker(onEmojiSelected: (emoji, category) {
+        print(emoji);
+        setState(() {
+          var emoji;
+          _controller.text = _controller.text + emoji.emoji;
+        });
+      }),
+    );
   }
 }
