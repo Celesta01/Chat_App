@@ -1,4 +1,3 @@
-
 import 'package:chat_app/CustomUI/AvtarCard.dart';
 import 'package:chat_app/CustomUI/ContactCard.dart';
 import 'package:chat_app/Model/ChatModel.dart';
@@ -13,24 +12,90 @@ class CreateGroup extends StatefulWidget {
 
 class _CreateGroupState extends State<CreateGroup> {
   List<ChatModel> contacts = [
-    ChatModel(name: "Dev Stack", status: "A full stack developer",icon: '',isGroup: false,time: '',currentMessage: ''),
-    ChatModel(name: "Balram", status: "Flutter Developer...........",icon: '',isGroup: false,time: '',currentMessage: ''),
-    ChatModel(name: "Saket", status: "Web developer...",icon: '',isGroup: false,time: '',currentMessage: ''),
-    ChatModel(name: "Bhanu Dev", status: "App developer....",icon: '',isGroup: false,time: '',currentMessage: ''),
-    ChatModel(name: "Collins", status: "Raect developer..",icon: '',isGroup: false,time: '',currentMessage: ''),
-    ChatModel(name: "Kishor", status: "Full Stack Web",icon: '',isGroup: false,time: '',currentMessage: ''),
-    ChatModel(name: "Testing1", status: "Example work",icon: '',isGroup: false,time: '',currentMessage: ''),
-    ChatModel(name: "Testing2", status: "Sharing is caring",icon: '',isGroup: false,time: '',currentMessage: ''),
-    ChatModel(name: "Divyanshu", status: ".....",icon: '',isGroup: false,time: '',currentMessage: ''),
-    ChatModel(name: "Helper", status: "Love you Mom Dad",icon: '',isGroup: false,time: '',currentMessage: ''),
-    ChatModel(name: "Tester", status: "I find the bugs",icon: '',isGroup: false,time: '',currentMessage: ''),
+    ChatModel(
+        name: "Vip",
+        status: "A full stack developer",
+        icon: '',
+        isGroup: false,
+        time: '',
+        currentMessage: ''),
+    ChatModel(
+        name: "Aman",
+        status: "Flutter Developer...........",
+        icon: '',
+        isGroup: false,
+        time: '',
+        currentMessage: ''),
+    ChatModel(
+        name: "Karan",
+        status: "Web developer...",
+        icon: '',
+        isGroup: false,
+        time: '',
+        currentMessage: ''),
+    ChatModel(
+        name: "Saurabh",
+        status: "App developer....",
+        icon: '',
+        isGroup: false,
+        time: '',
+        currentMessage: ''),
+    ChatModel(
+        name: "Rohit",
+        status: "Raect developer..",
+        icon: '',
+        isGroup: false,
+        time: '',
+        currentMessage: ''),
+    ChatModel(
+        name: "Jp",
+        status: "Full Stack Web",
+        icon: '',
+        isGroup: false,
+        time: '',
+        currentMessage: ''),
+    ChatModel(
+        name: "Shaqib",
+        status: "Example work",
+        icon: '',
+        isGroup: false,
+        time: '',
+        currentMessage: ''),
+    ChatModel(
+        name: "Shankar",
+        status: "Sharing is caring",
+        icon: '',
+        isGroup: false,
+        time: '',
+        currentMessage: ''),
+    ChatModel(
+        name: "Anjani",
+        status: ".....",
+        icon: '',
+        isGroup: false,
+        time: '',
+        currentMessage: ''),
+    ChatModel(
+        name: "Suraj",
+        status: "Love you Mom Dad",
+        icon: '',
+        isGroup: false,
+        time: '',
+        currentMessage: ''),
+    ChatModel(
+        name: "Tester",
+        status: "I find the bugs",
+        icon: '',
+        isGroup: false,
+        time: '',
+        currentMessage: ''),
   ];
   List<ChatModel> groupmember = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Column(
+          title: const Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -51,7 +116,7 @@ class _CreateGroupState extends State<CreateGroup> {
           ),
           actions: [
             IconButton(
-                icon: Icon(
+                icon: const Icon(
                   Icons.search,
                   size: 26,
                 ),
@@ -61,7 +126,7 @@ class _CreateGroupState extends State<CreateGroup> {
         floatingActionButton: FloatingActionButton(
             backgroundColor: Color(0xFF128C7E),
             onPressed: () {},
-            child: Icon(Icons.arrow_forward)),
+            child: const Icon(Icons.arrow_forward)),
         body: Stack(
           children: [
             ListView.builder(
@@ -69,7 +134,7 @@ class _CreateGroupState extends State<CreateGroup> {
                 itemBuilder: (context, index) {
                   if (index == 0) {
                     return Container(
-                      height: groupmember.length > 0 ? 90 : 10,
+                      height: groupmember.isNotEmpty ? 90 : 10,
                     );
                   }
                   return InkWell(
@@ -89,7 +154,7 @@ class _CreateGroupState extends State<CreateGroup> {
                     ),
                   );
                 }),
-            groupmember.length > 0
+            groupmember.isNotEmpty
                 ? Align(
                     child: Column(
                       children: [

@@ -1,5 +1,5 @@
 import 'package:chat_app/pages/CallsPage.dart';
-import 'package:chat_app/pages/Camera.dart';
+import 'package:chat_app/pages/CameraPage.dart';
 import 'package:chat_app/pages/ChatPage.dart';
 import 'package:chat_app/pages/StatusPage.dart';
 import 'package:flutter/material.dart';
@@ -79,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen>
       ),
       body: TabBarView(
         controller: _controller,
-        children: const [Camera(), ChatPage(), StatusPage(), CallsPages()],
+        children: const [CameraPage(), ChatPage(), StatusPage(), CallsPages()],
       ),
     );
   }
