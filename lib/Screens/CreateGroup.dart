@@ -124,7 +124,7 @@ class _CreateGroupState extends State<CreateGroup> {
           ],
         ),
         floatingActionButton: FloatingActionButton(
-            backgroundColor: Color(0xFF128C7E),
+            backgroundColor: const Color(0xFF128C7E),
             onPressed: () {},
             child: const Icon(Icons.arrow_forward)),
         body: Stack(
@@ -156,6 +156,7 @@ class _CreateGroupState extends State<CreateGroup> {
                 }),
             groupmember.isNotEmpty
                 ? Align(
+                    alignment: Alignment.topCenter,
                     child: Column(
                       children: [
                         Container(
@@ -166,6 +167,7 @@ class _CreateGroupState extends State<CreateGroup> {
                               itemCount: contacts.length,
                               itemBuilder: (context, index) {
                                 if (contacts[index].select == true)
+                                  // ignore: curly_braces_in_flow_control_structures
                                   return InkWell(
                                     onTap: () {
                                       setState(() {
@@ -180,12 +182,11 @@ class _CreateGroupState extends State<CreateGroup> {
                                 return Container();
                               }),
                         ),
-                        Divider(
+                        const Divider(
                           thickness: 1,
                         ),
                       ],
                     ),
-                    alignment: Alignment.topCenter,
                   )
                 : Container(),
           ],

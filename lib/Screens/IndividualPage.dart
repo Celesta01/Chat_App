@@ -3,6 +3,7 @@ import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+// ignore: must_be_immutable
 class IndividualPage extends StatefulWidget {
   IndividualPage({super.key, required this.chatModel});
   ChatModel chatModel;
@@ -45,6 +46,8 @@ class _IndividualPageState extends State<IndividualPage> {
               size: 24,
             ),
             CircleAvatar(
+              backgroundColor: Colors.blueGrey,
+              radius: 20,
               child: SvgPicture.asset(
                 widget.chatModel.isGroup
                     ? 'assets/icons/groups.svg'
@@ -53,15 +56,13 @@ class _IndividualPageState extends State<IndividualPage> {
                 height: 37,
                 width: 37,
               ),
-              backgroundColor: Colors.blueGrey,
-              radius: 20,
             ),
           ]),
         ),
         title: InkWell(
           onTap: () {},
           child: Container(
-            margin: EdgeInsets.all(6),
+            margin: const EdgeInsets.all(6),
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -89,7 +90,6 @@ class _IndividualPageState extends State<IndividualPage> {
           ),
           PopupMenuButton<String>(
             onSelected: (value) {
-              print(value);
             },
             itemBuilder: (context) {
               return [
@@ -135,7 +135,7 @@ class _IndividualPageState extends State<IndividualPage> {
                 children: [
                   Row(
                     children: [
-                      Container(
+                      SizedBox(
                         width: MediaQuery.of(context).size.width - 60,
                         child: Card(
                           margin: const EdgeInsets.only(
@@ -289,12 +289,12 @@ class _IndividualPageState extends State<IndividualPage> {
               color: Colors.white,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
           Text(
             text,
-            style: TextStyle(fontSize: 12),
+            style: const TextStyle(fontSize: 12),
           )
         ],
       ),
