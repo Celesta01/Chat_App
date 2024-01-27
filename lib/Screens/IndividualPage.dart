@@ -8,8 +8,10 @@ import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 // ignore: must_be_immutable
 class IndividualPage extends StatefulWidget {
-  IndividualPage({super.key, required this.chatModel});
+  IndividualPage(
+      {super.key, required this.chatModel, required this.sourcechat});
   ChatModel chatModel;
+  ChatModel sourcechat;
 
   @override
   State<IndividualPage> createState() => _IndividualPageState();
@@ -36,14 +38,28 @@ class _IndividualPageState extends State<IndividualPage> {
   }
 
   void connect() {
-    socket = IO.io('http://192.168.1.6:5000', <String, dynamic>{
+    // MessageModel messageModel = MessageModel(sourceId: widget.sourceChat.id.toString(),targetId: );
+    socket = IO.io("http://172.21.128.1:5000", <String, dynamic>{
       "transports": ["websocket"],
       "autoConnect": false,
     });
     socket.connect();
-    socket.emit("/test", "Hello Worldsssss");
-    socket.onConnect((data) => print("Connected"));
-    print('hellll- ${socket.connected}');
+    socket.emit("signin", widget.sourcechat.id);
+    socket.onConnect((data) {
+      print("Connected");
+      socket.on("message", (msg) {
+        print(msg);
+        // setMessage("destination", msg["message"]);
+        // _scrollController.animateTo(_scrollController.position.maxScrollExtent,
+        // duration: Duration(milliseconds: 300), curve: Curves.easeOut);
+      });
+    });
+    print(socket.connected);
+  }
+
+  void sendMessage(String message, int sourceId, int targetId) {
+    socket.emit("message",
+        {"message": message, "sourceId": sourceId, "targetId": targetId});
   }
 
   @override
@@ -260,7 +276,16 @@ class _IndividualPageState extends State<IndividualPage> {
                                   sendButton ? Icons.send : Icons.mic,
                                   color: Colors.white,
                                 ),
-                                onPressed: () {},
+                                onPressed: () {
+                                  if (sendButton) {
+                                    sendMessage(
+                                      _controller.text,
+                                      widget.sourcechat.id!,
+                                      widget.chatModel.id!,
+                                    );
+                                    _controller.clear();
+                                  }
+                                },
                               ),
                             ),
                           )
